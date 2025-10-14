@@ -12,9 +12,9 @@ const Header = () => {
     <header className="header">
       <div className="container">
         <div className="header-content">
-          <div className="logo">
-            <h2>Genovas</h2>
-          </div>
+          <a className="logo" href="#home" aria-label="Go to home">
+            <img src="/assets/logo.png" alt="Talented logo" className="logo-image" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+          </a>
           
           <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
             <ul className="nav-list">
