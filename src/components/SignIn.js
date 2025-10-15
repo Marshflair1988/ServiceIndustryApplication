@@ -117,7 +117,7 @@ const SignIn = ({ isOpen, onClose }) => {
               <input type="checkbox" />
               Remember me
             </label>
-            <a href="#" className="forgot-password">
+            <a href="#forgot-password" className="forgot-password">
               Forgot password?
             </a>
           </div>
@@ -132,7 +132,7 @@ const SignIn = ({ isOpen, onClose }) => {
           <div className="form-footer">
             <p>
               Don't have an account?{' '}
-              <a href="#" className="switch-form">
+              <a href="#signup" className="switch-form">
                 Sign up
               </a>
             </p>

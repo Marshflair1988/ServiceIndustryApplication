@@ -238,8 +238,8 @@ const Register = ({ isOpen, onClose }) => {
           <div className="form-options">
             <label className="checkbox-label">
               <input type="checkbox" required />I agree to the{' '}
-              <a href="#">Terms of Service</a> and{' '}
-              <a href="#">Privacy Policy</a>
+              <a href="#terms">Terms of Service</a> and{' '}
+              <a href="#privacy">Privacy Policy</a>
             </label>
           </div>
 
@@ -253,7 +253,7 @@ const Register = ({ isOpen, onClose }) => {
           <div className="form-footer">
             <p>
               Already have an account?{' '}
-              <a href="#" className="switch-form">
+              <a href="#signin" className="switch-form">
                 Sign in
               </a>
             </p>
