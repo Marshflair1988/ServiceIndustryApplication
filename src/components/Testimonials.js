@@ -4,42 +4,49 @@ import './Testimonials.css';
 const Testimonials = () => {
   const testimonials = [
     {
-      name: 'Dr. Sarah Johnson',
-      role: 'Family Physician',
-      practice: 'Johnson Medical Group',
-      content: 'Genovas has transformed our practice. The patient management system is intuitive and the analytics help us make better decisions. Our efficiency has improved by 40%.',
-      rating: 5
+      name: 'Ava Johnson',
+      role: 'Head Bartender',
+      practice: 'Crowbar Bryggeri',
+      content:
+        'Hospitality Hub completely transformed my career! I went from struggling to find consistent work to being booked solid with premium venues. The profile builder helped me showcase my cocktail skills perfectly.',
+      rating: 5,
     },
     {
-      name: 'Dr. Michael Chen',
-      role: 'Cardiologist',
-      practice: 'Heart Care Associates',
-      content: 'The telehealth features are outstanding. We can now provide care to patients who can\'t visit our office, and the integration with our existing systems was seamless.',
-      rating: 5
+      name: 'Liam Carter',
+      role: 'Barista & Coffee Expert',
+      practice: 'Nordic Beans',
+      content:
+        'The verified reviews feature is a game-changer. Guests can see my expertise and ratings, which has increased my bookings by 300%. The platform really helps professionals stand out.',
+      rating: 5,
     },
     {
-      name: 'Dr. Emily Rodriguez',
-      role: 'Pediatrician',
-      practice: 'Children\'s Health Center',
-      content: 'The HIPAA compliance and security features give us peace of mind. The platform is reliable and our patients love the patient portal functionality.',
-      rating: 5
-    }
+      name: 'Sofia Nguyen',
+      role: 'Server & Sommelier',
+      practice: 'Harbor House',
+      content:
+        "I love how easy it is to connect with venues that match my skills and values. The job matching algorithm is spot-on, and I've found amazing opportunities I never would have discovered otherwise.",
+      rating: 5,
+    },
   ];
 
   return (
     <section className="testimonials section" id="testimonials">
       <div className="container">
-        <h2 className="section-title">What Our Customers Say</h2>
+        <h2 className="section-title">What Our Professionals Say</h2>
         <p className="section-subtitle">
-          Join thousands of healthcare providers who trust Genovas to manage their practice.
+          Hear from service industry professionals who have transformed their
+          careers with Hospitality Hub. Their success stories inspire us every
+          day!
         </p>
-        
+
         <div className="testimonials-grid">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="testimonial-card">
               <div className="testimonial-rating">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <span key={i} className="star">★</span>
+                  <span key={i} className="star">
+                    ★
+                  </span>
                 ))}
               </div>
               <p className="testimonial-content">"{testimonial.content}"</p>
@@ -51,7 +58,10 @@ const Testimonials = () => {
                 </div>
                 <div className="author-avatar">
                   <div className="avatar-placeholder">
-                    {testimonial.name.split(' ').map(n => n[0]).join('')}
+                    {testimonial.name
+                      .split(' ')
+                      .map((n) => n[0])
+                      .join('')}
                   </div>
                 </div>
               </div>

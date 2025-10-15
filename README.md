@@ -1,13 +1,13 @@
-# Genovas Healthcare Platform Clone
+# Hospitality Hub
 
-A modern React implementation of the Genovas Webflow template, designed for healthcare providers and medical practices.
+A modern React landing experience for service industry professionals and venues.
 
 ## Features
 
 - **Modern Design**: Clean, professional healthcare-focused design
 - **Responsive Layout**: Fully responsive across all devices
 - **Component-Based**: Built with reusable React components
-- **Healthcare Focused**: Tailored for medical practices and healthcare providers
+- **Hospitality Focused**: Tailored for service industry professionals and venues
 - **Interactive Elements**: Smooth animations and hover effects
 
 ## Sections
@@ -16,18 +16,20 @@ A modern React implementation of the Genovas Webflow template, designed for heal
 2. **Hero**: Eye-catching landing section with call-to-action
 3. **Features**: Key platform features and benefits
 4. **About**: Company information and value proposition
-5. **Services**: Pricing plans and service offerings
+5. **Services**: Social presence and offerings
 6. **Testimonials**: Customer reviews and feedback
 7. **Footer**: Contact information and links
 
 ## Getting Started
 
 1. Install dependencies:
+
 ```bash
 npm install
 ```
 
 2. Start the development server:
+
 ```bash
 npm start
 ```
@@ -49,7 +51,7 @@ npm start
 - Professional typography using Inter font
 - Mobile-first responsive design
 - Smooth animations and transitions
-- Healthcare industry-specific content and imagery
+- Hospitality industry-specific content and imagery
 
 ## Customization
 
@@ -69,4 +71,4 @@ The design is easily customizable through CSS variables and component props. Key
 
 ## License
 
-This project is for demonstration purposes based on the Genovas Webflow template.
+This project is for demonstration purposes based on the Hospitality Hub concept.

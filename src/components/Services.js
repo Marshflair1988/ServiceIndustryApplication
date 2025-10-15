@@ -4,23 +4,41 @@ import './Services.css';
 const Services = () => {
   const services = [
     {
-      title: 'Electronic Health Records',
-      description: 'Comprehensive EHR system with customizable templates and automated workflows.',
-      price: 'Starting at $99/month',
-      features: ['Patient Records', 'Prescription Management', 'Lab Results', 'Billing Integration']
+      title: 'Professional Profile',
+      description:
+        'Create a stunning profile showcasing your skills, experience, and portfolio to attract opportunities.',
+      price: 'Free',
+      features: [
+        'Custom Profile Builder',
+        'Portfolio Showcase',
+        'Skills Highlighting',
+        'Social Media Integration',
+      ],
     },
     {
-      title: 'Practice Management',
-      description: 'Complete practice management solution with scheduling, billing, and reporting.',
-      price: 'Starting at $149/month',
-      features: ['Appointment Scheduling', 'Insurance Verification', 'Claims Processing', 'Financial Reporting']
+      title: 'Premium Discovery',
+      description:
+        'Get priority visibility and advanced matching to connect with the best venues and employers.',
+      price: '180Kr/month',
+      features: [
+        'Priority Job Matching',
+        'Advanced Analytics',
+        'Direct Messaging',
+        'Featured Listings',
+      ],
     },
     {
-      title: 'Telehealth Platform',
-      description: 'Secure video consultations and remote patient monitoring capabilities.',
-      price: 'Starting at $79/month',
-      features: ['Video Consultations', 'Remote Monitoring', 'Patient Portal', 'Mobile Access']
-    }
+      title: 'Career Pro',
+      description:
+        'Complete career management suite with coaching, networking, and growth tools.',
+      price: '250Kr/month',
+      features: [
+        'Career Coaching',
+        'Networking Events',
+        'Skill Assessments',
+        'Earnings Tracking',
+      ],
+    },
   ];
 
   return (
@@ -28,9 +46,10 @@ const Services = () => {
       <div className="container">
         <h2 className="section-title">Our Services</h2>
         <p className="section-subtitle">
-          Choose the perfect plan for your practice. All plans include 24/7 support and regular updates.
+          Choose the perfect plan for your career. All plans include community
+          support and regular platform updates.
         </p>
-        
+
         <div className="services-grid">
           {services.map((service, index) => (
             <div key={index} className="service-card">
@@ -49,7 +68,9 @@ const Services = () => {
                   ))}
                 </ul>
               </div>
-              <button className="btn btn-primary service-btn">Get Started</button>
+              <button className="btn btn-primary service-btn">
+                Get Started
+              </button>
             </div>
           ))}
         </div>

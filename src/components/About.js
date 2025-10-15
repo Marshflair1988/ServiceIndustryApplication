@@ -7,28 +7,33 @@ const About = () => {
       <div className="container">
         <div className="about-content">
           <div className="about-text">
-            <h2 className="section-title">Transforming Healthcare Through Technology</h2>
+            <h2 className="section-title">
+              Empowering Service Industry Professionals
+            </h2>
             <p className="about-description">
-              At Genovas, we believe that technology should enhance, not complicate, healthcare delivery. 
-              Our platform is built by healthcare professionals for healthcare professionals, ensuring 
-              that every feature serves a real purpose in improving patient outcomes and practice efficiency.
+              At Hospitality Hub, we believe that every service industry
+              professional deserves a platform to showcase their talent and
+              build their career. Our platform is built by hospitality
+              professionals for hospitality professionals, ensuring that every
+              feature helps you stand out, get discovered, and advance in your
+              career.
             </p>
             <div className="about-features">
               <div className="about-feature">
                 <div className="feature-check">✓</div>
-                <span>Built by healthcare professionals</span>
+                <span>Built by hospitality professionals</span>
               </div>
               <div className="about-feature">
                 <div className="feature-check">✓</div>
-                <span>HIPAA compliant and secure</span>
+                <span>Verified reviews and ratings</span>
               </div>
               <div className="about-feature">
                 <div className="feature-check">✓</div>
-                <span>24/7 customer support</span>
+                <span>24/7 community support</span>
               </div>
               <div className="about-feature">
                 <div className="feature-check">✓</div>
-                <span>Regular updates and improvements</span>
+                <span>Regular platform updates</span>
               </div>
             </div>
             <button className="btn btn-primary">Learn More About Us</button>
@@ -36,9 +41,11 @@ const About = () => {
           <div className="about-image">
             <div className="image-placeholder">
               <div className="placeholder-content">
-                <div className="placeholder-icon">🏥</div>
-                <h4>Modern Healthcare</h4>
-                <p>Empowering medical professionals with cutting-edge technology</p>
+                <div className="placeholder-icon">🍸</div>
+                <h4>Service Excellence</h4>
+                <p>
+                  Empowering hospitality professionals with modern career tools
+                </p>
               </div>
             </div>
           </div>

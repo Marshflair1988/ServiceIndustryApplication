@@ -4,45 +4,53 @@ import './Features.css';
 const Features = () => {
   const features = [
     {
-      icon: '🏥',
-      title: 'Patient Management',
-      description: 'Comprehensive patient records, scheduling, and communication tools all in one place.'
+      icon: '👤',
+      title: 'Professional Profiles',
+      description:
+        'Create stunning profiles showcasing your skills, experience, and portfolio to attract the right opportunities.',
     },
     {
-      icon: '📊',
-      title: 'Analytics Dashboard',
-      description: 'Real-time insights and analytics to help you make informed decisions about your practice.'
+      icon: '⭐',
+      title: 'Verified Reviews',
+      description:
+        'Collect authentic guest reviews and ratings that build trust and credibility in the industry.',
     },
     {
-      icon: '🔒',
-      title: 'HIPAA Compliant',
-      description: 'Enterprise-grade security and compliance to protect patient data and meet regulations.'
+      icon: '🔍',
+      title: 'Smart Discovery',
+      description:
+        'Get discovered by venues and employers who are actively looking for professionals like you.',
     },
     {
       icon: '📱',
-      title: 'Mobile Access',
-      description: 'Access your practice management tools anywhere with our mobile-responsive platform.'
+      title: 'Mobile-First Design',
+      description:
+        'Access your profile, apply to jobs, and manage bookings anywhere with our mobile-optimized platform.',
     },
     {
-      icon: '💬',
-      title: 'Patient Communication',
-      description: 'Automated reminders, messaging, and telehealth capabilities for better patient engagement.'
+      icon: '💼',
+      title: 'Job Matching',
+      description:
+        'Receive personalized job recommendations based on your skills, location, and preferences.',
     },
     {
-      icon: '⚡',
-      title: 'Fast Integration',
-      description: 'Seamlessly integrate with existing systems and third-party applications.'
-    }
+      icon: '📈',
+      title: 'Career Analytics',
+      description:
+        'Track your performance, earnings, and career growth with detailed insights and statistics.',
+    },
   ];
 
   return (
     <section className="features section" id="features">
       <div className="container">
-        <h2 className="section-title">Why Choose Genovas?</h2>
+        <h2 className="section-title">Why Choose Hospitality Hub?</h2>
         <p className="section-subtitle">
-          Powerful features designed specifically for healthcare providers to streamline operations and improve patient care.
+          Powerful features designed specifically for service industry
+          professionals to showcase their skills, build their reputation, and
+          advance their careers.
         </p>
-        
+
         <div className="features-grid">
           {features.map((feature, index) => (
             <div key={index} className="feature-card">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -7,17 +7,46 @@ import About from './components/About';
 import Services from './components/Services';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
+import SignIn from './components/SignIn';
+import Register from './components/Register';
 
 function App() {
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+
+  const handleSignInClick = () => {
+    setShowSignIn(true);
+    setShowRegister(false);
+  };
+
+  const handleRegisterClick = () => {
+    setShowRegister(true);
+    setShowSignIn(false);
+  };
+
+  const closeModals = () => {
+    setShowSignIn(false);
+    setShowRegister(false);
+  };
+
   return (
     <div className="App">
-      <Header />
-      <Hero />
+      <Header
+        onSignInClick={handleSignInClick}
+        onRegisterClick={handleRegisterClick}
+      />
+      <Hero
+        onSignInClick={handleSignInClick}
+        onRegisterClick={handleRegisterClick}
+      />
       <Features />
       <About />
       <Services />
       <Testimonials />
       <Footer />
+
+      <SignIn isOpen={showSignIn} onClose={closeModals} />
+      <Register isOpen={showRegister} onClose={closeModals} />
     </div>
   );
 }

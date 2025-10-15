@@ -8,24 +8,18 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-section">
             <div className="footer-logo">
-              <h3>Genovas</h3>
-              <p>Transforming healthcare through innovative technology solutions.</p>
-            </div>
-            <div className="footer-social">
-              <a href="#" className="social-link">LinkedIn</a>
-              <a href="#" className="social-link">Twitter</a>
-              <a href="#" className="social-link">Facebook</a>
-              <a href="#" className="social-link">Instagram</a>
-            </div>
+              <h3>Hospitality Hub</h3>
+              <p>Highlighting the best in the hospitality industry.</p>
+            </div> 
           </div>
           
           <div className="footer-section">
             <h4>Product</h4>
             <ul className="footer-links">
-              <li><a href="#features">Features</a></li>
-              <li><a href="#services">Pricing</a></li>
-              <li><a href="#">Integrations</a></li>
-              <li><a href="#">API</a></li>
+              <li><a href="#" className="social-link">LinkedIn</a></li>
+              <li><a href="#" className="social-link">Twitter</a></li>
+              <li><a href="#" className="social-link">Facebook</a></li>
+              <li><a href="#" className="social-link">Instagram</a></li>
             </ul>
           </div>
           
@@ -48,20 +42,10 @@ const Footer = () => {
               <li><a href="#">Terms of Service</a></li>
             </ul>
           </div>
-          
-          <div className="footer-section">
-            <h4>Contact</h4>
-            <div className="contact-info">
-              <p>📧 hello@genovas.com</p>
-              <p>📞 (555) 123-4567</p>
-              <p>📍 123 Healthcare Ave, Medical City, MC 12345</p>
-            </div>
-          </div>
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; 2024 Genovas. All rights reserved.</p>
-          <p>HIPAA Compliant • SOC 2 Certified • ISO 27001</p>
+          <p>&copy; 2025 Hospitality Hub. All rights reserved.</p>
         </div>
       </div>
     </footer>

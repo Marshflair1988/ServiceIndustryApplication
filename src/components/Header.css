@@ -8,7 +8,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   z-index: 1000;
   transition: all 0.3s ease;
-  --logo-size: 200px; /* change this to resize logo without affecting header height */
+  --logo-size: 72px; /* change this to resize logo without affecting header height */
 }
 
 .header-content {
@@ -90,23 +90,23 @@
     visibility: hidden;
     transition: all 0.3s ease;
   }
-  
+
   .nav-open {
     transform: translateY(0);
     opacity: 1;
     visibility: visible;
   }
-  
+
   .nav-list {
     flex-direction: column;
     padding: 2rem;
     gap: 1rem;
   }
-  
+
   .header-actions {
     display: none;
   }
-  
+
   .menu-toggle {
     display: flex;
   }
