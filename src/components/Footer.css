@@ -84,13 +84,13 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .footer-bottom {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
   }
-  
+
   .footer-social {
     justify-content: center;
   }

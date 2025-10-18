@@ -1,5 +1,23 @@
 .services {
-  background: white;
+  background: #f8fafc;
+  position: relative;
+}
+
+.services::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #667eea,
+    #764ba2,
+    transparent
+  );
+  opacity: 0.3;
 }
 
 .services-grid {
@@ -93,11 +111,11 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .service-card:nth-child(2) {
     transform: none;
   }
-  
+
   .service-card {
     padding: 1.5rem;
   }

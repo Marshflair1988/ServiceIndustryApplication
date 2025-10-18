@@ -171,62 +171,80 @@ const Hero = ({ onSignInClick, onRegisterClick }) => {
           <div className="hero-image">
             <div className="hero-card">
               <div className="card-header">
-                <div className="card-dots">
-                  <span></span>
-                  <span></span>
-                  <span></span>
+                <div className="cocktail-menu-header">
+                  <div className="menu-title">🍸 Service Industry Stars</div>
+                  <div className="menu-subtitle">Featured Professionals</div>
+                  <div className="menu-divider"></div>
+                  <div className="menu-categories">
+                    <span className="category-tab active">Staff</span>
+                    <span className="category-tab">Reviews</span>
+                    <span className="category-tab">Schedule</span>
+                  </div>
                 </div>
               </div>
               <div className="card-content">
                 <div
                   key={current.id}
                   className="dashboard-preview carousel-slide">
-                  <div className="profile-row">
-                    <img
-                      className="profile-avatar"
-                      src={current.avatarUrl}
-                      alt={`${current.name} avatar`}
-                    />
-                    <div className="profile-meta">
-                      <div className="profile-name-row">
-                        <h4 className="profile-name">{current.name}</h4>
-                        <div className="profile-rating">
-                          <span className="sr-only">Rating</span>
-                          <span className="profile-rating-number">
+                  <div className="menu-item">
+                    <div className="item-header">
+                      <div className="item-name-section">
+                        <div className="item-name-row">
+                          <img
+                            className="item-avatar"
+                            src={current.avatarUrl}
+                            alt={`${current.name} avatar`}
+                          />
+                          <h4 className="item-name">{current.name}</h4>
+                        </div>
+                        <div className="item-rating">
+                          <span className="rating-stars">
+                            <RatingStars value={current.rating} />
+                          </span>
+                          <span className="rating-number">
                             {current.rating.toFixed(1)}
                           </span>
-                          <RatingStars value={current.rating} />
                         </div>
                       </div>
-                      <div className="profile-sub">
-                        <span className="profile-profession">
+                      <div className="item-price">
+                        <span className="price-label">Rating</span>
+                        <span className="price-value">
+                          {current.rating.toFixed(1)}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="item-description">
+                      <span className="item-role">{current.profession}</span>
+                      <span className="item-separator">at</span>
+                      <span className="item-location">{current.workplace}</span>
+                    </div>
+                  </div>
+
+                  <div className="menu-details">
+                    <div className="detail-item">
+                      <div className="detail-icon">🍸</div>
+                      <div className="detail-content">
+                        <span className="detail-title">Specialty</span>
+                        <span className="detail-value">
                           {current.profession}
                         </span>
-                        <span className="profile-dot">•</span>
-                        <span className="profile-workplace">
+                      </div>
+                    </div>
+                    <div className="detail-item">
+                      <div className="detail-icon">🏢</div>
+                      <div className="detail-content">
+                        <span className="detail-title">Venue</span>
+                        <span className="detail-value">
                           {current.workplace}
                         </span>
                       </div>
                     </div>
-                  </div>
-
-                  <div className="dashboard-stats">
-                    <div className="stat-card">
-                      <div className="stat-icon">👥</div>
-                      <div className="stat-info">
-                        <span className="stat-number">
-                          {current.profession}
-                        </span>
-                        <span className="stat-label">{current.workplace}</span>
-                      </div>
-                    </div>
-                    <div className="stat-card">
-                      <div className="stat-icon">⭐</div>
-                      <div className="stat-info">
-                        <span className="stat-number">Rating</span>
-                        <span className="stat-label">
-                          {current.rating.toFixed(1)}
-                          <RatingStars value={current.rating} />
+                    <div className="detail-item">
+                      <div className="detail-icon">⭐</div>
+                      <div className="detail-content">
+                        <span className="detail-title">Guest Rating</span>
+                        <span className="detail-value">
+                          {current.rating.toFixed(1)} stars
                         </span>
                       </div>
                     </div>
