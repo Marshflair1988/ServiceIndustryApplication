@@ -167,6 +167,17 @@
   text-decoration: underline;
 }
 
+.api-error {
+  background: #fed7d7;
+  border: 1px solid #feb2b2;
+  color: #c53030;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
 @media (max-width: 480px) {
   .modal-content {
     margin: 10px;

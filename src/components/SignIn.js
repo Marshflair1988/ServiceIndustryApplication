@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 import './SignIn.css';
 
 const SignIn = ({ isOpen, onClose }) => {
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [apiError, setApiError] = useState('');
 
   const validateForm = () => {
     const newErrors = {};
@@ -54,16 +57,21 @@ const SignIn = ({ isOpen, onClose }) => {
     }
 
     setIsSubmitting(true);
+    setApiError('');
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const result = await login(formData);
 
-      // Handle sign in logic here
-      console.log('Sign in:', formData);
-      onClose();
+      if (result.success) {
+        onClose();
+        // Reset form
+        setFormData({ email: '', password: '' });
+      } else {
+        setApiError(result.message);
+      }
     } catch (error) {
       console.error('Sign in error:', error);
+      setApiError('An unexpected error occurred. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -82,6 +90,10 @@ const SignIn = ({ isOpen, onClose }) => {
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
+          {apiError && (
+            <div className="error-message api-error">{apiError}</div>
+          )}
+
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input

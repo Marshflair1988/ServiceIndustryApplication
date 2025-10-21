@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AuthProvider } from './contexts/AuthContext';
 import './App.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -30,24 +31,26 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Header
-        onSignInClick={handleSignInClick}
-        onRegisterClick={handleRegisterClick}
-      />
-      <Hero
-        onSignInClick={handleSignInClick}
-        onRegisterClick={handleRegisterClick}
-      />
-      <Features />
-      <About />
-      <Services />
-      <Testimonials />
-      <Footer />
+    <AuthProvider>
+      <div className="App">
+        <Header
+          onSignInClick={handleSignInClick}
+          onRegisterClick={handleRegisterClick}
+        />
+        <Hero
+          onSignInClick={handleSignInClick}
+          onRegisterClick={handleRegisterClick}
+        />
+        <Features />
+        <About />
+        <Services />
+        <Testimonials />
+        <Footer />
 
-      <SignIn isOpen={showSignIn} onClose={closeModals} />
-      <Register isOpen={showRegister} onClose={closeModals} />
-    </div>
+        <SignIn isOpen={showSignIn} onClose={closeModals} />
+        <Register isOpen={showRegister} onClose={closeModals} />
+      </div>
+    </AuthProvider>
   );
 }
 

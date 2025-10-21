@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 import './Register.css';
 
 const Register = ({ isOpen, onClose }) => {
+  const { register } = useAuth();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -12,6 +14,7 @@ const Register = ({ isOpen, onClose }) => {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [apiError, setApiError] = useState('');
 
   const validateForm = () => {
     const newErrors = {};
@@ -82,16 +85,40 @@ const Register = ({ isOpen, onClose }) => {
     }
 
     setIsSubmitting(true);
+    setApiError('');
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Prepare user data for API
+      const userData = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        password: formData.password,
+        role:
+          formData.accountType === 'professional'
+            ? 'service_provider'
+            : 'customer',
+      };
 
-      // Handle registration logic here
-      console.log('Register:', formData);
-      onClose();
+      const result = await register(userData);
+
+      if (result.success) {
+        onClose();
+        // Reset form
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+          accountType: 'professional',
+        });
+      } else {
+        setApiError(result.message);
+      }
     } catch (error) {
       console.error('Registration error:', error);
+      setApiError('An unexpected error occurred. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -110,6 +137,10 @@ const Register = ({ isOpen, onClose }) => {
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
+          {apiError && (
+            <div className="error-message api-error">{apiError}</div>
+          )}
+
           <div className="account-type-selection">
             <h3>Choose your account type</h3>
             <div className="account-type-options">
