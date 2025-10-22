@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import './SignIn.css';
 
 const SignIn = ({ isOpen, onClose }) => {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -66,6 +68,7 @@ const SignIn = ({ isOpen, onClose }) => {
         onClose();
         // Reset form
         setFormData({ email: '', password: '' });
+        navigate('/dashboard');
       } else {
         setApiError(result.message);
       }

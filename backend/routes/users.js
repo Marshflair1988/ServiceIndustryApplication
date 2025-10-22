@@ -2,6 +2,8 @@ const express = require('express');
 const { body, validationResult, query } = require('express-validator');
 const User = require('../models/User');
 const { auth, authorize } = require('../middleware/auth');
+const upload = require('../middleware/upload');
+const path = require('path');
 
 const router = express.Router();
 
@@ -258,6 +260,83 @@ router.delete('/:id', auth, async (req, res) => {
   }
 });
 
+// @route   GET /api/users/:id/stats
+// @desc    Get user statistics
+// @access  Private
+router.get('/:id/stats', auth, async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    // Users can only view their own stats unless they're admin
+    if (req.user.role !== 'admin' && req.userId.toString() !== userId) {
+      return res.status(403).json({
+        success: false,
+        message: 'Access denied',
+      });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    // Get basic user stats
+    const stats = {
+      profile: {
+        isVerified: user.isVerified,
+        isActive: user.isActive,
+        memberSince: user.createdAt,
+        lastLogin: user.lastLogin,
+      },
+      services: {
+        total: 0,
+        active: 0,
+        pending: 0,
+      },
+      bookings: {
+        total: 0,
+        completed: 0,
+        pending: 0,
+        cancelled: 0,
+      },
+    };
+
+    // If user is a service provider, get service stats
+    if (user.role === 'service_provider' || user.role === 'venue_owner') {
+      const Service = require('../models/Service');
+      const serviceStats = await Service.aggregate([
+        { $match: { provider: userId } },
+        {
+          $group: {
+            _id: '$status',
+            count: { $sum: 1 },
+          },
+        },
+      ]);
+
+      serviceStats.forEach((stat) => {
+        stats.services.total += stat.count;
+        if (stat._id === 'active') stats.services.active = stat.count;
+        if (stat._id === 'pending') stats.services.pending = stat.count;
+      });
+    }
+
+    res.json({
+      success: true,
+      data: stats,
+    });
+  } catch (error) {
+    console.error('Get user stats error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error',
+    });
+  }
+});
+
 // @route   GET /api/users/stats/overview
 // @desc    Get user statistics (admin only)
 // @access  Private (Admin)
@@ -297,6 +376,110 @@ router.get('/stats/overview', auth, authorize('admin'), async (req, res) => {
     });
   } catch (error) {
     console.error('Get user stats error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error',
+    });
+  }
+});
+
+// @route   POST /api/users/:id/profile-picture
+// @desc    Upload profile picture
+// @access  Private
+router.post(
+  '/:id/profile-picture',
+  auth,
+  upload.single('profilePicture'),
+  async (req, res) => {
+    try {
+      const userId = req.params.id;
+
+      // Users can only upload their own profile picture unless they're admin
+      if (req.user.role !== 'admin' && req.userId.toString() !== userId) {
+        return res.status(403).json({
+          success: false,
+          message: 'Access denied',
+        });
+      }
+
+      if (!req.file) {
+        return res.status(400).json({
+          success: false,
+          message: 'No file uploaded',
+        });
+      }
+
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(404).json({
+          success: false,
+          message: 'User not found',
+        });
+      }
+
+      // Update user with profile picture path
+      user.profileImage = `/uploads/${req.file.filename}`;
+      await user.save();
+
+      res.json({
+        success: true,
+        message: 'Profile picture uploaded successfully',
+        data: {
+          profileImage: user.profileImage,
+        },
+      });
+    } catch (error) {
+      console.error('Upload profile picture error:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Server error',
+      });
+    }
+  }
+);
+
+// @route   DELETE /api/users/:id/profile-picture
+// @desc    Delete profile picture
+// @access  Private
+router.delete('/:id/profile-picture', auth, async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    // Users can only delete their own profile picture unless they're admin
+    if (req.user.role !== 'admin' && req.userId.toString() !== userId) {
+      return res.status(403).json({
+        success: false,
+        message: 'Access denied',
+      });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    // Delete the file from filesystem if it exists
+    if (user.profileImage) {
+      const fs = require('fs');
+      const filePath = path.join(__dirname, '..', user.profileImage);
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+    }
+
+    // Remove profile picture from user record
+    user.profileImage = undefined;
+    await user.save();
+
+    res.json({
+      success: true,
+      message: 'Profile picture deleted successfully',
+    });
+  } catch (error) {
+    console.error('Delete profile picture error:', error);
     res.status(500).json({
       success: false,
       message: 'Server error',

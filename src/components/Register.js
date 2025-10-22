@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import './Register.css';
 
 const Register = ({ isOpen, onClose }) => {
   const { register } = useAuth();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -113,6 +115,7 @@ const Register = ({ isOpen, onClose }) => {
           confirmPassword: '',
           accountType: 'professional',
         });
+        navigate('/dashboard');
       } else {
         setApiError(result.message);
       }

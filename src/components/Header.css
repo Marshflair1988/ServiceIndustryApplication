@@ -64,6 +64,24 @@
   align-items: center;
 }
 
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-name {
+  color: #667eea;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.user-menu {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -114,4 +132,24 @@
   .menu-toggle {
     display: flex;
   }
+}
+
+.btn-outline {
+  background: transparent;
+  color: #667eea;
+  border: 2px solid #667eea;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-outline:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-2px);
 }

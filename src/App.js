@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import './App.css';
 import Header from './components/Header';
@@ -10,6 +16,8 @@ import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import SignIn from './components/SignIn';
 import Register from './components/Register';
+import Dashboard from './components/Dashboard';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const [showSignIn, setShowSignIn] = useState(false);
@@ -32,24 +40,44 @@ function App() {
 
   return (
     <AuthProvider>
-      <div className="App">
-        <Header
-          onSignInClick={handleSignInClick}
-          onRegisterClick={handleRegisterClick}
-        />
-        <Hero
-          onSignInClick={handleSignInClick}
-          onRegisterClick={handleRegisterClick}
-        />
-        <Features />
-        <About />
-        <Services />
-        <Testimonials />
-        <Footer />
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route
+              path="/dashboard/*"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <>
+                  <Header
+                    onSignInClick={handleSignInClick}
+                    onRegisterClick={handleRegisterClick}
+                  />
+                  <Hero
+                    onSignInClick={handleSignInClick}
+                    onRegisterClick={handleRegisterClick}
+                  />
+                  <Features />
+                  <About />
+                  <Services />
+                  <Testimonials />
+                  <Footer />
+                </>
+              }
+            />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
 
-        <SignIn isOpen={showSignIn} onClose={closeModals} />
-        <Register isOpen={showRegister} onClose={closeModals} />
-      </div>
+          <SignIn isOpen={showSignIn} onClose={closeModals} />
+          <Register isOpen={showRegister} onClose={closeModals} />
+        </div>
+      </Router>
     </AuthProvider>
   );
 }

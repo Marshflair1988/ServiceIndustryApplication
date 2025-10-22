@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import './Header.css';
 
 const Header = ({ onSignInClick, onRegisterClick }) => {
+  const { isAuthenticated, user, logout } = useAuth();
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
 
@@ -11,6 +15,16 @@ const Header = ({ onSignInClick, onRegisterClick }) => {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const handleDashboardClick = () => {
+    navigate('/dashboard');
+    closeMenu();
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    closeMenu();
   };
 
   useEffect(() => {
@@ -99,12 +113,32 @@ const Header = ({ onSignInClick, onRegisterClick }) => {
           </nav>
 
           <div className="header-actions">
-            <button className="btn btn-secondary" onClick={onSignInClick}>
-              Sign In
-            </button>
-            <button className="btn btn-primary" onClick={onRegisterClick}>
-              Get Started
-            </button>
+            {isAuthenticated ? (
+              <>
+                <div className="user-info">
+                  <span className="user-name">Hi, {user?.firstName}</span>
+                  <div className="user-menu">
+                    <button
+                      className="btn btn-secondary"
+                      onClick={handleDashboardClick}>
+                      Dashboard
+                    </button>
+                    <button className="btn btn-outline" onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <button className="btn btn-secondary" onClick={onSignInClick}>
+                  Sign In
+                </button>
+                <button className="btn btn-primary" onClick={onRegisterClick}>
+                  Get Started
+                </button>
+              </>
+            )}
           </div>
 
           <button className="menu-toggle" onClick={toggleMenu}>
